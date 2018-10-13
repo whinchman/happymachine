@@ -11,9 +11,9 @@ fs.writeFile("/tmp/test", "Hey there!\nIs this Printing?\nOMG!!!", function(err)
     }
 
 	console.log("The file was saved!");
-	dir = exec("lp -d ZJ-58 ./tmp/test", function(err, stdout, stderr) {
+	dir = exec("lp -d ZJ-58 /tmp/test", function(err, stdout, stderr) {
 		if (err) {
-		  // should have err.code here?  
+			console.log(err)
 		}
 		console.log(stdout);
 	  });
