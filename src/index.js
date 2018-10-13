@@ -1,28 +1,12 @@
-const escpos = require('escpos');
- 
-// Select the adapter based on your printer type
-//const device  = new escpos.USB();
-// const device  = new escpos.Network('localhost');
-const device  = new escpos.Serial('/dev/usb/lp0');
- 
-const options = { encoding: "GB18030" /* default */ }
-// encoding is optional
- 
-const printer = new escpos.Printer(device, options);
- 
- console.log("trying to print")
- 
-device.open(function(){
-  printer
-  .font('a')
-  .align('ct')
-  .style('bu')
-  .size(1, 1)
-  .text('The quick brown fox jumps over the lazy dog')
-  .text('敏捷的棕色狐狸跳过懒狗')
-  .barcode('1234567', 'EAN8')
-  .qrimage('https://github.com/song940/node-escpos', function(err){
-    this.cut();
-    this.close();
-  });
-});
+
+var printer = require("../lib");
+
+console.log('trying to print')
+
+printer.printDirect({data:"print from Node.JS buffer" // or simple String: "some text"
+	//, printer:'Foxit Reader PDF Printer' // printer name, if missing then will print to default printer
+	, type: 'RAW' // type: RAW, TEXT, PDF, JPEG, .. depends on platform
+	, success:function(jobID){
+		console.log("sent to printer with ID: "+jobID);
+	}
+	, error:function(err){console.log(err);}
