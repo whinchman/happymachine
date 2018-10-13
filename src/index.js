@@ -1,15 +1,26 @@
+var sys = require('sys')
+var exec = require('child_process').exec;
+var fs = require('fs');
 
-var printer = require("../lib");
-
-console.log('trying to print')
-
-printer.printDirect({data:"print from Node.JS buffer" // or simple String: "some text"
-	//, printer:'Foxit Reader PDF Printer' // printer name, if missing then will print to default printer
-	, type: 'RAW' // type: RAW, TEXT, PDF, JPEG, .. depends on platform
-	, success:function(jobID){
-		console.log("sent to printer with ID: "+jobID);
-	}
-	, error:function(err){
-        console.log(err)
+fs.writeFile("/tmp/test", "Hey there!\nIs this Printing?\nOMG!!!", function(err) {
+    if(err) {
+        return console.log(err);
     }
-})
+
+    console.log("The file was saved!");
+}); 
+
+
+function puts(error, stdout, stderr) { sys.puts(stdout) }
+dir = exec("lp -d ZJ-58 ./tmp/test", function(err, stdout, stderr) {
+	if (err) {
+	  // should have err.code here?  
+	}
+	console.log(stdout);
+  });
+  
+  dir.on('exit', function (code) {
+	// exit code is code
+  });
+
+
