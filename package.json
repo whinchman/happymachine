@@ -4,7 +4,8 @@
   "description": "a happy machine",
   "main": "src/index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
