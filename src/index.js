@@ -1,9 +1,9 @@
 const escpos = require('escpos');
  
 // Select the adapter based on your printer type
-const device  = new escpos.USB();
+//const device  = new escpos.USB();
 // const device  = new escpos.Network('localhost');
-// const device  = new escpos.Serial('/dev/usb/lp0');
+const device  = new escpos.Serial('/dev/usb/lp0');
  
 const options = { encoding: "GB18030" /* default */ }
 // encoding is optional
