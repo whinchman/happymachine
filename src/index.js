@@ -9,4 +9,7 @@ printer.printDirect({data:"print from Node.JS buffer" // or simple String: "some
 	, success:function(jobID){
 		console.log("sent to printer with ID: "+jobID);
 	}
-	, error:function(err){console.log(err);}
+	, error:function(err){
+        console.log(err)
+    }
+})
