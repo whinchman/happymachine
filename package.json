@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/whinchman/happymachine/issues"
   },
-  "homepage": "https://github.com/whinchman/happymachine#readme"
+  "homepage": "https://github.com/whinchman/happymachine#readme",
+  "dependencies": {
+    "escpos": "^2.4.9"
+  }
 }
