@@ -22,5 +22,5 @@ except KeyboardInterrupt:
     f.close()
     mypath = os.path.dirname(os.path.abspath(__file__))
     myfilepath = mypath + "/temp.txt\""
-    myCommand = "lp -d ZJ-58 \"" + myfilepath
+    myCommand = "lp -d ZJ-58 -o page-bottom=72 \"" + myfilepath
     os.system(myCommand)
