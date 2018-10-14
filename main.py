@@ -13,9 +13,9 @@ def printMessage(message):
 
 def my_callback(channel):
     if GPIO.input(6) == GPIO.HIGH:
-        print('\n▼  at ' + str(datetime.datetime.now()))
+        print('\n LOW at ' + str(datetime.datetime.now()))
     else:
-        print('\n  ▲ at ' + str(datetime.datetime.now())) 
+        print('\n HIGH at ' + str(datetime.datetime.now())) 
 
 
 GPIO.setmode(GPIO.BOARD)
