@@ -3,6 +3,13 @@ import time
 import os
 import datetime
 
+def flashLED():
+    for x in range(0,6):
+        time.sleep(0.1)
+        GPIO.output(11, GPIO.HIGH)
+        time.sleep(0.1)
+        GPIO.output(11, GPIO.LOW)
+
 def printMessage(message):
     f = open("temp.txt", "w")
     f.write(message)
@@ -13,10 +20,8 @@ def printMessage(message):
     os.system(myCommand)
 
 def my_callback(channel):
-    if GPIO.input(13) == GPIO.HIGH:
-        print('\n LOW at ' + str(datetime.datetime.now()))
-    else:
-        print('\n HIGH at ' + str(datetime.datetime.now())) 
+    flashLED()
+    printMessage("OMG PRINTING WHEN I PRESS A BUTTON. DAMN!!!!!")
 
 
 GPIO.setmode(GPIO.BOARD)
@@ -24,16 +29,12 @@ GPIO.setup(11, GPIO.OUT)
 GPIO.setup(13, GPIO.IN)
 
 GPIO.output(11, GPIO.LOW)
-GPIO.add_event_detect(13, GPIO.BOTH, callback=my_callback)
+GPIO.add_event_detect(13, GPIO.LOW, callback=my_callback)
 
 print("testing flash & grab input")
 
 try:
     while 1:
-        time.sleep(0.2)
-        GPIO.output(11, GPIO.HIGH)
-        time.sleep(0.2)
-        GPIO.output(11, GPIO.LOW)
         
 except KeyboardInterrupt:
     GPIO.cleanup()
