@@ -44,6 +44,7 @@ function sendToPrinter(message) {
 	}); 
 }
 
+console.log('entering init')
 raspi.init(() => {
 	// const input = new gpio.DigitalInput({
 	//   pin: 'P1-3',
@@ -56,8 +57,9 @@ raspi.init(() => {
 });
 
 var ledOn = false
-
+console.log('entering while')
 while (true) {
+	console.log('in while')
 	sleep(500).then(() => {
 		console.log('SLEPT')
 		setLED(output, ledOn)
