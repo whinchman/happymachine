@@ -18,6 +18,17 @@ function setLED(output, on) {
 	}
 
 }
+var ledOn = false
+
+function animateLED() {	
+	console.log('going sleep')
+	sleep(500).then(() => {
+		console.log('SLEPT')
+		setLED(output, ledOn)
+		ledOn = !ledOn
+		animateLED()
+	});
+}
 
 function sendToPrinter(message) {
 	//have to write to a temp file, since we're going to call out directly to LPS
@@ -56,18 +67,4 @@ raspi.init(() => {
 	output.write(gpio.LOW);
 });
 
-var ledOn = false
-console.log('going sleep')
-sleep(500).then(() => {
-	console.log('SLEPT')
-	setLED(output, ledOn)
-	ledOn = !ledOn
-});
-
-
-
-
-
-
-
-
+animateLED();
