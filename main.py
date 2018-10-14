@@ -23,7 +23,7 @@ GPIO.setup(11, GPIO.OUT)
 GPIO.setup(13, GPIO.IN)
 
 GPIO.output(11, GPIO.LOW)
-GPIO.add_event_detect(6, GPIO.BOTH, callback=my_callback)
+GPIO.add_event_detect(13, GPIO.BOTH, callback=my_callback)
 
 print("testing flash & grab input")
 
