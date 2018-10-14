@@ -18,7 +18,7 @@ try:
 except KeyboardInterrupt:
     GPIO.cleanup()
     f = open("temp.txt", "w")
-    f.write("printing from python maybe?")
+    f.write("printing from python maybe?\r\r\r\r")
     f.close()
     mypath = os.path.dirname(os.path.abspath(__file__))
     myfilepath = mypath + "/temp.txt\""
