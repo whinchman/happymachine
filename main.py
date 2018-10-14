@@ -23,20 +23,19 @@ def my_callback(channel):
     flashLED()
     printMessage("OMG PRINTING WHEN I PRESS A BUTTON. DAMN!!!!!")
 
-
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(11, GPIO.OUT)
-GPIO.setup(13, GPIO.IN)
-
-GPIO.output(11, GPIO.LOW)
-GPIO.add_event_detect(13, GPIO.LOW, callback=my_callback)
-
 print("testing flash & grab input")
 
 try:
-    while 1:
-        
-except KeyboardInterrupt:
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(11, GPIO.OUT)
+    GPIO.setup(13, GPIO.IN)
+
+    GPIO.output(11, GPIO.LOW)
+    GPIO.add_event_detect(13, GPIO.LOW, callback=my_callback)
+    
+    message = raw_input('\nPress any key to exit.\n')
+ 
+finally:
     GPIO.cleanup()
 
 
