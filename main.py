@@ -19,7 +19,8 @@ except KeyboardInterrupt:
     GPIO.cleanup()
     f = open("temp.txt", "w")
     f.write("printing from python maybe?")
+    f.close()
     mypath = os.path.dirname(os.path.abspath(__file__))
-    myfilepath = mypath + "/temp.txt"
-    myCommand = "lp -d ZJ-58 " + myfilepath
+    myfilepath = mypath + "/temp.txt\""
+    myCommand = "lp -d ZJ-58 \"" + myfilepath
     os.system(myCommand)
