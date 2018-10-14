@@ -12,7 +12,7 @@ def printMessage(message):
     os.system(myCommand)
 
 def my_callback(channel):
-    if GPIO.input(6) == GPIO.HIGH:
+    if GPIO.input(13) == GPIO.HIGH:
         print('\n LOW at ' + str(datetime.datetime.now()))
     else:
         print('\n HIGH at ' + str(datetime.datetime.now())) 
