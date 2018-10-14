@@ -59,6 +59,7 @@ var ledOn = false
 
 while (true) {
 	sleep(500).then(() => {
+		console.log('SLEPT')
 		setLED(output, ledOn)
 		ledOn = !ledOn
 	});
