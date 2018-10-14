@@ -23,9 +23,3 @@ fs.writeFile("/tmp/test", "Hey there!\nIs this Printing?\nOMG!!!", function(err)
 	  });
 	  
 }); 
-
-
-
-
-
-

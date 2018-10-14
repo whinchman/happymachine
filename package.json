@@ -17,5 +17,8 @@
     "url": "https://github.com/whinchman/happymachine/issues"
   },
   "homepage": "https://github.com/whinchman/happymachine#readme",
-  "dependencies": {}
+  "dependencies": {
+      "raspi" : "latest",
+      "raspi-gpio" : "latest"
+  }
 }
