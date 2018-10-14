@@ -4,6 +4,8 @@ var fs = require('fs');
 const raspi = require('raspi');
 const gpio = require('raspi-gpio');
 
+
+var output
 //function puts(error, stdout, stderr) { sys.puts(stdout) }
 const sleep = (milliseconds) => {
 	return new Promise(resolve => setTimeout(resolve, milliseconds))
@@ -20,7 +22,7 @@ function setLED(output, on) {
 }
 var ledOn = false
 
-function animateLED() {	
+function animateLED(output) {	
 	console.log('going sleep')
 	sleep(500).then(() => {
 		console.log('SLEPT')
@@ -62,9 +64,9 @@ raspi.init(() => {
 	//   pullResistor: gpio.PULL_UP
 	// });
 
-	const output = new gpio.DigitalOutput('P1-11');
+	output = new gpio.DigitalOutput('P1-11');
 
 	output.write(gpio.LOW);
 });
 
-animateLED();
+animateLED(output);
