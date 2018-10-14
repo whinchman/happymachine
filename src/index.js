@@ -67,6 +67,6 @@ raspi.init(() => {
 	output = new gpio.DigitalOutput('P1-11');
 
 	output.write(gpio.LOW);
+	animateLED(output);
 });
 
-animateLED(output);
