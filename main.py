@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import os
+import datetime
 
 def printMessage(message):
     f = open("temp.txt", "w")
