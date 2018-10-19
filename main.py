@@ -26,6 +26,10 @@ def my_callback(channel):
 
 print("testing flash & grab input")
 
+with open('./resources/text.json', 'r') as myfile:
+    data=myfile.read()
+print(json.dumps(data))
+
 try:
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(11, GPIO.OUT)
@@ -36,13 +40,9 @@ try:
     
     message = raw_input('\nPress any key to exit.\n')
 
-    with open('/resources/text.json', 'r') as myfile:
-        data=myfile.read()
-    print(json.dumps(data))
-
 except:
     print("somethings gone wrong")
-    
+
 finally:
     GPIO.cleanup()
 
