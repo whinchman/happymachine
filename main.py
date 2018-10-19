@@ -3,6 +3,23 @@ import time
 import os
 import datetime
 import json
+import random
+
+random.seed()
+
+try:
+    with open('./resources/text.json', 'r') as myfile:
+        data=myfile.read()
+    print(json.dumps(data))
+except:
+    print("Error Opening and Parsing Data File")
+
+try:
+    parsedData = json.loads(data)
+except:
+    print("failed to parse data to JSON")
+
+messages = parsedData["jokes"]
 
 def flashLED():
     for x in range(0,6):
@@ -22,13 +39,12 @@ def printMessage(message):
 
 def my_callback(channel):
     flashLED()
-    printMessage("OMG PRINTING WHEN I PRESS A BUTTON. DAMN!!!!!")
+    randIndex = random.randint(0,len(messages))
+    printMessage(messages[randIndex])
 
 print("testing flash & grab input")
 
-with open('./resources/text.json', 'r') as myfile:
-    data=myfile.read()
-print(json.dumps(data))
+
 
 try:
     GPIO.setmode(GPIO.BOARD)
