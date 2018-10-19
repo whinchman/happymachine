@@ -37,7 +37,7 @@ try:
     message = raw_input('\nPress any key to exit.\n')
 
     with open('/resources/text.json', 'r') as myfile:
-    data=myfile.read()
+        data=myfile.read()
     print(json.dumps(data))
  
 finally:
