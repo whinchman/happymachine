@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 import time
 import os
 import datetime
+import json
 
 def flashLED():
     for x in range(0,6):
@@ -34,6 +35,10 @@ try:
     GPIO.add_event_detect(13, GPIO.FALLING, callback=my_callback, bouncetime=1000)
     
     message = raw_input('\nPress any key to exit.\n')
+
+    with open('/resources/text.json', 'r') as myfile:
+    data=myfile.read()
+    print(json.dumps(data))
  
 finally:
     GPIO.cleanup()
