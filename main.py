@@ -39,7 +39,7 @@ def printMessage(message):
 
 def my_callback(channel):
     flashLED()
-    randIndex = random.randint(0,len(messages))
+    randIndex = random.randint(0,len(messages)-1)
     printMessage(messages[randIndex])
 
 print("testing flash & grab input")
