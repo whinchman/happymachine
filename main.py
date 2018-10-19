@@ -19,14 +19,15 @@ try:
 except:
     print("failed to parse data to JSON")
 
-messages = parsedData["jokes"]
+jokes = parsedData["jokes"]
+fortunes = parsedData["fortunes"]
 
-def flashLED():
+def flashLED(pin):
     for x in range(0,6):
         time.sleep(0.1)
-        GPIO.output(11, GPIO.HIGH)
+        GPIO.output(pin, GPIO.HIGH)
         time.sleep(0.1)
-        GPIO.output(11, GPIO.LOW)
+        GPIO.output(pin, GPIO.LOW)
 
 def printMessage(message):
     f = open("temp.txt", "w")
@@ -37,38 +38,39 @@ def printMessage(message):
     myCommand = "lp -d ZJ-58 \"" + myfilepath
     os.system(myCommand)
 
-def my_callback(channel):
-    flashLED()
-    randIndex = random.randint(0,len(messages)-1)
-    printMessage(messages[randIndex])
+def yellow_button(channel):
+    flashLED(11)
+    randIndex = random.randint(0,len(jokes)-1)
+    printMessage(jokes[randIndex])
 
 def green_button(channel):
-    for x in range(0,6):
-        time.sleep(0.1)
-        GPIO.output(15, GPIO.HIGH)
-        time.sleep(0.1)
-        GPIO.output(15, GPIO.LOW)
+    flashLED(15)
+    randIndex = random.randint(0,len(fortunes)-1)
+    printMessage(fortunes[randIndex])
 
-print("testing flash & grab input")
-
-
+print("setting up GPIO")
 
 try:
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(11, GPIO.OUT)
-    GPIO.setup(13, GPIO.IN)
-    GPIO.setup(15, GPIO.OUT)
-    GPIO.setup(16, GPIO.IN)
 
+    # setup output pins
+    GPIO.setup(11, GPIO.OUT)
+    GPIO.setup(15, GPIO.OUT)
+    
     GPIO.output(11, GPIO.LOW)
     GPIO.output(15, GPIO.LOW)
-    GPIO.add_event_detect(13, GPIO.FALLING, callback=my_callback, bouncetime=1000)
+
+    # setup input pins
+    GPIO.setup(16, GPIO.IN)
+    GPIO.setup(13, GPIO.IN)
+
+    GPIO.add_event_detect(13, GPIO.FALLING, callback=yellow_button, bouncetime=1000)
     GPIO.add_event_detect(16, GPIO.FALLING, callback=green_button, bouncetime=1000)
     
     message = raw_input('\nPress any key to exit.\n')
 
 except:
-    print("somethings gone wrong")
+    print("GPIO FAILURE")
 
 finally:
     GPIO.cleanup()
