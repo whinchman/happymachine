@@ -50,8 +50,10 @@ try:
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(11, GPIO.OUT)
     GPIO.setup(13, GPIO.IN)
+    GPIO.setup(15, GPIO.OUT)
 
     GPIO.output(11, GPIO.LOW)
+    GPIO.output(15, GPIO.LOW)
     GPIO.add_event_detect(13, GPIO.FALLING, callback=my_callback, bouncetime=1000)
     
     message = raw_input('\nPress any key to exit.\n')
