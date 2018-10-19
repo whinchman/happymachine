@@ -39,7 +39,10 @@ try:
     with open('/resources/text.json', 'r') as myfile:
         data=myfile.read()
     print(json.dumps(data))
- 
+
+except:
+    print("somethings gone wrong")
+    
 finally:
     GPIO.cleanup()
 
