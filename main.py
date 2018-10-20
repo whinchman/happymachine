@@ -97,7 +97,7 @@ try:
     GPIO.add_event_detect(GREEN_BUTTON, GPIO.FALLING, callback=yellow_button, bouncetime=3000)
     GPIO.add_event_detect(YELLOW_BUTTON, GPIO.FALLING, callback=green_button, bouncetime=3000)
     GPIO.add_event_detect(BLUE_BUTTON, GPIO.FALLING, callback=blue_button, bouncetime=3000)
-    GPIO.add_event_detect(RED_BUTTON, GPIO.FALLING, callback=blue_button, bouncetime=3000)
+    GPIO.add_event_detect(RED_BUTTON, GPIO.FALLING, callback=red_button, bouncetime=3000)
 
     # RUN LOOP
     message = raw_input('\nPress any key to exit.\n')
