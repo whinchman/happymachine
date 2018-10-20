@@ -5,6 +5,13 @@ import datetime
 import json
 import random
 
+YELLOW_LED = 11
+GREEN_LED = 15
+BLUE_LED = 18
+YELLOW_BUTTON = 16
+GREEN_BUTTON = 13
+BLUE_BUTTON = 19
+
 random.seed()
 
 try:
@@ -39,41 +46,43 @@ def printMessage(message):
     os.system(myCommand)
 
 def yellow_button(channel):
-    flashLED(11)
     randIndex = random.randint(0,len(jokes)-1)
     printMessage(jokes[randIndex])
+    flashLED(YELLOW_LED)
 
 def green_button(channel):
-    flashLED(15)
     randIndex = random.randint(0,len(fortunes)-1)
     printMessage(fortunes[randIndex])
+    flashLED(GREEN_LED)
 
 def blue_button(channel):
-    flashLED(15)
-    randIndex = random.randint(0,len(fortunes)-1)
-    printMessage(fortunes[randIndex])
+    printMessage("BLUE BUTTON")
+    flashLED(BLUE_LED)
+
 print("setting up GPIO")
 
 try:
     GPIO.setmode(GPIO.BOARD)
 
-    # setup output pins
-    GPIO.setup(11, GPIO.OUT)
-    GPIO.setup(15, GPIO.OUT)
-    GPIO.setup(18, GPIO.OUT)
 
-    GPIO.output(11, GPIO.LOW)
-    GPIO.output(15, GPIO.LOW)
-    GPIO.output(18, GPIO.LOW)
+    # setup output pins
+    GPIO.setup(YELLOW_LED, GPIO.OUT)
+    GPIO.setup(GREEN_LED, GPIO.OUT)
+    GPIO.setup(BLUE_LED, GPIO.OUT)
+
+    GPIO.output(YELLOW_LED, GPIO.LOW)
+    GPIO.output(GREEN_LED, GPIO.LOW)
+    GPIO.output(BLUE_LED, GPIO.LOW)
+
 
     # setup input pins
-    GPIO.setup(16, GPIO.IN)
-    GPIO.setup(13, GPIO.IN)
-    GPIO.setup(19 , GPIO.IN)
+    GPIO.setup(YELLOW_BUTTON, GPIO.IN)
+    GPIO.setup(GREEN_BUTTON, GPIO.IN)
+    GPIO.setup(BLUE_BUTTON , GPIO.IN)
 
-    GPIO.add_event_detect(13, GPIO.FALLING, callback=yellow_button, bouncetime=1000)
-    GPIO.add_event_detect(16, GPIO.FALLING, callback=green_button, bouncetime=1000)
-    GPIO.add_event_detect(19, GPIO.FALLING, callback=blue_button, bouncetime=1000)
+    GPIO.add_event_detect(GREEN_BUTTON, GPIO.FALLING, callback=yellow_button, bouncetime=3000)
+    GPIO.add_event_detect(YELLOW_BUTTON, GPIO.FALLING, callback=green_button, bouncetime=3000)
+    GPIO.add_event_detect(BLUE_BUTTON, GPIO.FALLING, callback=blue_button, bouncetime=3000)
     
     message = raw_input('\nPress any key to exit.\n')
 
