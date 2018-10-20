@@ -48,6 +48,10 @@ def green_button(channel):
     randIndex = random.randint(0,len(fortunes)-1)
     printMessage(fortunes[randIndex])
 
+def blue_button(channel):
+    flashLED(15)
+    randIndex = random.randint(0,len(fortunes)-1)
+    printMessage(fortunes[randIndex])
 print("setting up GPIO")
 
 try:
@@ -56,16 +60,20 @@ try:
     # setup output pins
     GPIO.setup(11, GPIO.OUT)
     GPIO.setup(15, GPIO.OUT)
-    
+    GPIO.setup(18, GPIO.OUT)
+
     GPIO.output(11, GPIO.LOW)
     GPIO.output(15, GPIO.LOW)
+    GPIO.output(18, GPIO.LOW)
 
     # setup input pins
     GPIO.setup(16, GPIO.IN)
     GPIO.setup(13, GPIO.IN)
+    GPIO.setup(19 , GPIO.IN)
 
     GPIO.add_event_detect(13, GPIO.FALLING, callback=yellow_button, bouncetime=1000)
     GPIO.add_event_detect(16, GPIO.FALLING, callback=green_button, bouncetime=1000)
+    GPIO.add_event_detect(19, GPIO.FALLING, callback=blue_button, bouncetime=1000)
     
     message = raw_input('\nPress any key to exit.\n')
 
