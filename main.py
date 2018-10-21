@@ -58,7 +58,16 @@ def yellow_button(channel):
 
 def green_button(channel):
     randIndex = random.randint(0,len(fortunes)-1)
-    printMessage(fortunes[randIndex])
+    numbers = []
+    
+    for x in range(0,5):
+        numbers.append(random.randint(1, 70))
+    
+    numbers.append(random.randint(1,25))
+    numbersString = "Lucky Numbers: %d %d %d %d %d %d " % numbers[0], numbers[1], numbers[2], numbers[3], numbers[4], numbers[5]
+    
+    message = fortunes[randIndex] + "\n" + numbersString
+    printMessage(message)
     flashLED(GREEN_LED)
 
 def blue_button(channel):
