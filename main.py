@@ -66,7 +66,7 @@ def green_button(channel):
     numbers.append(random.randint(1,25))
     numbersString = "Lucky Numbers: %d %d %d %d %d %d " % (numbers[0], numbers[1], numbers[2], numbers[3], numbers[4], numbers[5])
     
-    message = fortunes[randIndex] + "\n" + numbersString
+    message = fortunes[randIndex] + "\n\n" + numbersString
     printMessage(message)
     flashLED(GREEN_LED)
 
