@@ -33,6 +33,7 @@ except:
 
 jokes = parsedData["jokes"]
 fortunes = parsedData["fortunes"]
+obliques = parsedData["obliques"]
 
 def flashLED(pin):
     for x in range(0,6):
@@ -61,7 +62,8 @@ def green_button(channel):
     flashLED(GREEN_LED)
 
 def blue_button(channel):
-    printMessage("BLUE BUTTON")
+    randIndex = random.randint(0,len(obliques)-1)
+    printMessage(obliques[randIndex])
     flashLED(BLUE_LED)
 
 def red_button(channel):
